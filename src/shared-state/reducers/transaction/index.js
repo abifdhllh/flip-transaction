@@ -24,22 +24,13 @@ export const TransactionSelectors = {
 
 // ========= Reducers ========= //
 const reducerGetTransactionListRequest = (state, {param}) => {
-  return state.merge({
-    loading: true,
-    transactionList: [],
-  });
+  return {...state, loading: true, transactionList: []};
 };
 const reducerGetTransactionListSuccess = (state, {payload}) => {
-  return state.merge({
-    loading: false,
-    transactionList: payload,
-  });
+  return {...state, loading: false, transactionList: payload};
 };
 const reducerGetTransactionListFailure = (state, {error}) => {
-  return state.merge({
-    loading: false,
-    error,
-  });
+  return {...state, loading: false, error};
 };
 // ========= Reducers ========= //
 

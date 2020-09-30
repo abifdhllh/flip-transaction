@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.fliptransactionlist"
+        applicationId "com.fliptransaction"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
