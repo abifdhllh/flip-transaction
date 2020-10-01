@@ -20,10 +20,10 @@ export const monthListIndonesia = {
   '07': 'Juli',
   '08': 'Agustus',
   '09': 'September',
-  '10': 'Oktober',
-  '11': 'November',
-  '12': 'Desember',
-}
+  10: 'Oktober',
+  11: 'November',
+  12: 'Desember',
+};
 
 export const formatDateIndonesia = (string = '2020-01-01') => {
   const year = string.slice(0, 4);
@@ -34,4 +34,66 @@ export const formatDateIndonesia = (string = '2020-01-01') => {
   const convertedMonth = monthListIndonesia[month];
 
   return `${convertedDate} ${convertedMonth} ${year}`;
+};
+
+export function sortObjectByStringAscending(array = [], sortAccessor) {
+  return array.sort((a, b) => {
+    const stringA = a[sortAccessor].toLowerCase();
+    const stringB = b[sortAccessor].toLowerCase();
+
+    let comparison = 0;
+    if (stringA > stringB) {
+      comparison = 1;
+    } else if (stringA < stringB) {
+      comparison = -1;
+    }
+    return comparison;
+  });
+}
+
+export function sortObjectByStringDescending(array = [], sortAccessor) {
+  return array.sort((a, b) => {
+    const stringA = a[sortAccessor].toLowerCase();
+    const stringB = b[sortAccessor].toLowerCase();
+
+    let comparison = 0;
+    if (stringB > stringA) {
+      comparison = 1;
+    } else if (stringB < stringA) {
+      comparison = -1;
+    }
+    return comparison;
+  });
+}
+
+export function sortObjectByDateAscending(array = [], sortAccessor) {
+  return array.sort((a, b) => {
+    const dateStringA = a[sortAccessor];
+    const yearA = Number(dateStringA.slice(0, 4));
+    const monthA = Number(dateStringA.slice(5, 7));
+    const dateA = Number(dateStringA.slice(8, 10));
+
+    const dateStringB = b[sortAccessor];
+    const yearB = Number(dateStringB.slice(0, 4));
+    const monthB = Number(dateStringB.slice(5, 7));
+    const dateB = Number(dateStringB.slice(8, 10));
+
+    return new Date(yearA, monthA, dateA) - new Date(yearB, monthB, dateB);
+  });
+}
+
+export function sortObjectByDateDescending(array = [], sortAccessor) {
+  return array.sort((a, b) => {
+    const dateStringA = a[sortAccessor];
+    const yearA = Number(dateStringA.slice(0, 4));
+    const monthA = Number(dateStringA.slice(5, 7));
+    const dateA = Number(dateStringA.slice(8, 10));
+
+    const dateStringB = b[sortAccessor];
+    const yearB = Number(dateStringB.slice(0, 4));
+    const monthB = Number(dateStringB.slice(5, 7));
+    const dateB = Number(dateStringB.slice(8, 10));
+
+    return new Date(yearB, monthB, dateB) - new Date(yearA, monthA, dateA);
+  });
 }

@@ -9,16 +9,19 @@ const SearchBar = ({
   placeholder = 'Cari nama, bank, atau nominal',
   onPressSort,
   containerStyle = {},
+  sortText = 'URUTKAN',
+  value = '',
 }) => {
   return (
     <View style={{...styles.container, ...containerStyle}}>
       <Icon style={styles.icon} name="magnifier" />
       <TextInput
+        value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
         style={styles.textInput}
       />
-      <TextButton text="URUTKAN" iconName="down" onPress={onPressSort} />
+      <TextButton text={sortText} iconName="down" onPress={onPressSort} />
     </View>
   );
 };

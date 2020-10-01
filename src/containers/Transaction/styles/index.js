@@ -7,7 +7,9 @@ export default StyleSheet.create({
     backgroundColor: Colors.appBg,
   },
   body: {
-    padding: Metrics.small,
+    paddingTop: Metrics.small,
+    paddingHorizontal: Metrics.small,
+    flex: 1,
   },
   detailView: {
     marginVertical: Metrics.xl,
@@ -59,5 +61,22 @@ export default StyleSheet.create({
   columnView: {
     marginTop: Metrics.large,
     flexDirection: 'column',
+  },
+
+  // Modal Sort
+  modalContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalView: {
+    width: '90%',
+    paddingTop: Metrics.xl,
+    paddingHorizontal: Metrics.xl,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    elevation: 5,
   },
 });

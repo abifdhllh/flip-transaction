@@ -2,24 +2,30 @@ import React from 'react';
 
 // Component
 import {SafeAreaView, View, Text, Image, TouchableOpacity} from 'react-native';
+import Clipboard from '@react-native-community/clipboard';
 import Header from 'components/Header';
 import TextButton from 'components/Button/TextButton';
 import Icon from 'react-native-vector-icons/Fontisto';
+import {RNToasty} from 'react-native-toasty';
 
 // Styles
 import styles from './styles';
 
 const TransactionDetail = ({route, navigation}) => {
-  console.log('Route', route);
   const {item = {}} = route.params;
   const Divider = <View style={styles.divider} />;
+
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Detail Transaksi" />
       <View style={styles.detailView}>
         <View style={styles.rowView}>
           <Text style={styles.title}>{`ID TRANSAKSI: #${item.id}`}</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              Clipboard.setString(item.id);
+              RNToasty.Show({title: 'ID Transaksi Tersalin'});
+            }}>
             <Image
               style={styles.iconCopy}
               source={require('images/copy.png')}
