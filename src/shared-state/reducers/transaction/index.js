@@ -95,7 +95,7 @@ const reducerSortTransactionList = (state, {sortValue}) => {
   return {...state, transactionList: newTransactionlist};
 };
 
-const reducerFilterTransactionList = (state, {filterValue}) => {
+const reducerFilterTransactionList = (state, {filterValue = ''}) => {
   const initialTransactionList = state.initialTransactionList;
   const filteredTransactionList = initialTransactionList.filter(
     ({
@@ -104,10 +104,10 @@ const reducerFilterTransactionList = (state, {filterValue}) => {
       sender_bank = '',
       amount = 0,
     }) =>
-      beneficiary_name.toLowerCase().includes(filterValue) ||
-      amount.toString().toLowerCase().includes(filterValue) ||
-      beneficiary_bank.toLowerCase().includes(filterValue) ||
-      sender_bank.toLowerCase().includes(filterValue),
+      beneficiary_name.toLowerCase().includes(filterValue.toLowerCase()) ||
+      amount.toString().toLowerCase().includes(filterValue.toLowerCase()) ||
+      beneficiary_bank.toLowerCase().includes(filterValue.toLowerCase()) ||
+      sender_bank.toLowerCase().includes(filterValue.toLowerCase()),
   );
 
   return {...state, transactionList: filteredTransactionList};
