@@ -12,7 +12,8 @@ import {RNToasty} from 'react-native-toasty';
 import styles from './styles';
 
 const TransactionDetail = ({route, navigation}) => {
-  const {item = {}} = route.params;
+  const {item = {}} = route.params; // Transaction Detail List
+
   const Divider = <View style={styles.divider} />;
 
   return (

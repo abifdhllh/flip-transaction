@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 
 // Component
-import {SafeAreaView, View, FlatList, Modal} from 'react-native';
+import {SafeAreaView, View, FlatList, Modal, Text} from 'react-native';
 import Header from 'components/Header';
 import SearchBar from 'components/Form/SearchBar';
 import TransactionCard from 'components/Card/TransactionCard';
 import RadioButton from 'components/Button/RadioButton';
+import LoadingView from 'components/View/LoadingView';
 
 // Styles
 import styles from './styles';
@@ -47,21 +48,21 @@ const TransactionList = ({
 
   // Selector
   transactionList,
+  loading,
 
   // Navigation Props
   navigation,
 }) => {
-  const [modalSort, setModalSort] = useState(false);
-  const [sortValue, setSortValue] = useState(0);
-  const [filterValue, setFilterValue] = useState('');
+  const [modalSort, setModalSort] = useState(false); // Show Modal Sort State
+  const [sortValue, setSortValue] = useState(0); // Value for Sort State
+  const [filterValue, setFilterValue] = useState(''); // Value for Filter State
 
-  const sortText = sortOptions[sortValue].label;
+  const sortText = sortOptions[sortValue].label; // Text to display on Sort Text Indicator
 
+  // Get the Transaction List via API call
   useEffect(() => {
     doGetTransactionList();
   }, []);
-
-  console.log('Filter Value', filterValue);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -76,16 +77,28 @@ const TransactionList = ({
             doFilterTransactionList(filterValue);
           }}
         />
-        <FlatList
-          data={transactionList}
-          keyExtractor={(item, index) => `list-item-${index}`}
-          renderItem={({item}) => (
-            <TransactionCard
-              items={item}
-              onPress={() => navigation.push('TransactionDetail', {item})}
-            />
-          )}
-        />
+        {loading ? (
+          <LoadingView />
+        ) : (
+          <FlatList
+            contentContainerStyle={{flexGrow: 1}}
+            data={transactionList}
+            keyExtractor={(item, index) => `list-item-${index}`}
+            renderItem={({item}) => (
+              <TransactionCard
+                items={item}
+                onPress={() => navigation.push('TransactionDetail', {item})}
+              />
+            )}
+            refreshing={loading}
+            onRefresh={() => doGetTransactionList()}
+            ListEmptyComponent={
+              <View style={styles.flexCenter}>
+                <Text style={styles.emptyItemText}>Data tidak tersedia</Text>
+              </View>
+            }
+          />
+        )}
       </View>
       <Modal
         onRequestClose={() => setModalSort(false)}
@@ -113,6 +126,7 @@ const TransactionList = ({
 
 const mapStateToProps = (state) => ({
   transactionList: TransactionSelectors.getTransactionList(state),
+  loading: TransactionSelectors.getLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

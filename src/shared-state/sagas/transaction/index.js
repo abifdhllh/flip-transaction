@@ -1,12 +1,18 @@
 import {call, put} from 'redux-saga/effects';
 import TransactionActions from 'shared-state/reducers/transaction';
 import {apiGetTransactionList} from 'utils/Api';
-import {capitalizeString, upperCaseString, formatRupiah, formatDateIndonesia} from 'utils/Functions';
+import {
+  capitalizeString,
+  upperCaseString,
+  formatRupiah,
+  formatDateIndonesia,
+} from 'utils/Functions';
 
 export function* sagaGetTransactionList(action) {
   const response = yield call(apiGetTransactionList, action);
 
   if (response.status >= 200 && response.status < 300) {
+    // Assigning new value to Transaction List Item
     const dataObjectToArray = Object.values(response.data);
     const result = dataObjectToArray.map((row) => {
       if (row.status === 'SUCCESS') {

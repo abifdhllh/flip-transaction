@@ -79,4 +79,14 @@ export default StyleSheet.create({
     borderRadius: 5,
     elevation: 5,
   },
+
+  flexCenter: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyItemText: {
+    fontSize: Metrics.xl,
+    color: 'gray',
+  }
 });
