@@ -21,6 +21,9 @@ const TransactionList = ({
 
   // Selector
   transactionList,
+
+  // Navigation Props
+  navigation,
 }) => {
   useEffect(() => {
     doGetTransactionList();
@@ -35,8 +38,13 @@ const TransactionList = ({
         <SearchBar onPressSort={() => console.log('Masuk gan')} />
         <FlatList
           data={transactionList}
-          keyExtractor={(item, index) => index}
-          renderItem={({item}) => <TransactionCard items={item} />}
+          keyExtractor={(item, index) => `list-item-${index}`}
+          renderItem={({item}) => (
+            <TransactionCard
+              items={item}
+              onPress={() => navigation.push('TransactionDetail', {item})}
+            />
+          )}
         />
       </View>
     </SafeAreaView>
