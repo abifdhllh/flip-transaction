@@ -18,7 +18,7 @@ const TransactionDetail = ({route, navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Detail Transaksi" />
+      <Header title="Detail Transaksi" backButton navigation={navigation} />
       <View style={styles.detailView}>
         <View style={styles.rowView}>
           <Text style={styles.title}>{`ID TRANSAKSI: #${item.id}`}</Text>

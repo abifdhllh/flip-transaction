@@ -7,7 +7,6 @@ export default StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
     padding: Metrics.small,
     backgroundColor: Colors.orange,
   },
@@ -15,5 +14,10 @@ export default StyleSheet.create({
     fontSize: Metrics.large,
     color: 'white',
     fontWeight: 'bold',
+  },
+  icon: {
+    fontSize: Metrics.xl,
+    marginRight: Metrics.xs,
+    color: Colors.white,
   },
 });
