@@ -34,10 +34,10 @@ export default StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    fontSize: Metrics.large,
+    fontSize: Metrics.medium,
   },
   desc: {
-    fontSize: Metrics.large,
+    fontSize: Metrics.medium,
   },
   iconArrow: {
     fontSize: Metrics.small,
@@ -54,7 +54,7 @@ export default StyleSheet.create({
     borderRadius: Metrics.xxs,
   },
   statusText: {
-    fontSize: Metrics.medium,
+    fontSize: Metrics.small,
     fontWeight: 'bold',
   },
   divider: {

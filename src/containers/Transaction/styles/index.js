@@ -27,14 +27,14 @@ export default StyleSheet.create({
     borderWidth: 0.5,
   },
   title: {
-    fontSize: Metrics.large,
+    fontSize: Metrics.medium,
     fontWeight: 'bold',
   },
   desc: {
-    fontSize: Metrics.large,
+    fontSize: Metrics.medium,
   },
   bankName: {
-    fontSize: Metrics.xl,
+    fontSize: Metrics.large,
     fontWeight: 'bold',
   },
   iconCopy: {
