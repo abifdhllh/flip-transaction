@@ -52,12 +52,12 @@ const TransactionDetail = ({route, navigation}) => {
                 <Text style={styles.desc}>{item.account_number}</Text>
               </View>
               <View style={styles.columnView}>
-                <Text style={styles.title}>{item.beneficiary_name}</Text>
-                <Text style={styles.desc}>{item.account_number}</Text>
-              </View>
-              <View style={styles.columnView}>
                 <Text style={styles.title}>Berita Transfer</Text>
                 <Text style={styles.desc}>{item.remark}</Text>
+              </View>
+              <View style={styles.columnView}>
+                <Text style={styles.title}>Tanggal Dibuat</Text>
+                <Text style={styles.desc}>{item.date_formatted}</Text>
               </View>
             </View>
             <View style={styles.fullFlex}>
